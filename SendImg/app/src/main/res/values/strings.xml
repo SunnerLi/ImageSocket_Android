@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SendImg</string>
+    <string name="tcp_btn">TCP 傳送</string>
+    <string name="udp_btn">UDP 傳送</string>
+    <string name="title_activity_tcpsend">TCPSend</string>
+    <string name="send">傳送！</string>
+
+</resources>
