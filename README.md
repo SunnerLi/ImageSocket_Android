@@ -1,5 +1,5 @@
 # ImageSocket_Android
-[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?maxAge=2592000)]()</br>
+[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?maxAge=2592000)]()
 [![Packagist](https://img.shields.io/badge/Develope-0.0.1-brightgreen.svg)]()</br>   
 The Android plugin that can used to send the image rapidly.
 
