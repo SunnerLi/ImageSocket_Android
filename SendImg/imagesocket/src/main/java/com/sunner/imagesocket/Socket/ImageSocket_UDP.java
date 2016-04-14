@@ -15,6 +15,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by sunner on 2016/4/8.
@@ -22,6 +23,8 @@ import java.net.UnknownHostException;
 class ImageSocket_UDP extends ImgSocket {
     DatagramSocket datagramSocket[] = new DatagramSocket[5];
     private InetAddress inetAddress;
+    Semaphore semaphore = new Semaphore(1);
+    long time;
 
 
     public ImageSocket_UDP(String host, int port) {
@@ -63,8 +66,10 @@ class ImageSocket_UDP extends ImgSocket {
 
 
     // Send the image
-    public ImageSocket_UDP send(Bitmap bitmap) throws IOException {
+    public ImageSocket_UDP send(Bitmap bitmap) throws IOException, InterruptedException {
         int imageIndex = 0;
+        semaphore.acquire();
+        time = System.currentTimeMillis();
         String bitmapString = bitMap2String(bitmap);
         String smallString = "";
 
@@ -90,6 +95,8 @@ class ImageSocket_UDP extends ImgSocket {
             } while (bitmapString.length() > 0);
         } finally {
             close();
+            time = System.currentTimeMillis() - time;
+            semaphore.release();
         }
         return this;
     }
@@ -106,5 +113,10 @@ class ImageSocket_UDP extends ImgSocket {
             if (datagramSocket[i] != null)
                 datagramSocket[i].close();
         }
+    }
+
+    // Get the time of sending image
+    public long getSendTime(){
+        return time;
     }
 }

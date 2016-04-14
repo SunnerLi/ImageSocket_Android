@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by sunner on 2016/4/8.
@@ -19,6 +20,8 @@ class ImageSocket_TCP extends ImgSocket {
     Socket socket = null;
     SocketAddress socketAddress;
     OutputStream outputStream = null;
+    Semaphore semaphore = new Semaphore(1);
+    long time;
 
     public ImageSocket_TCP(String host, int port) throws IOException {
         localPort = port;
@@ -82,6 +85,8 @@ class ImageSocket_TCP extends ImgSocket {
             Log.e(TAG, "Haven't get input stream yet.");
         else {
             int imageIndex = 0;
+            semaphore.acquire();
+            time = System.currentTimeMillis();
             String bitmapString = bitMap2String(bitmap);
             String smallString = "";
             do {
@@ -106,7 +111,14 @@ class ImageSocket_TCP extends ImgSocket {
             RTPPacket rtpPacket = new RTPPacket();
             byte[] end = rtpPacket.encode("", 0);
             outputStream.write(end);
+            time = System.currentTimeMillis() - time;
+            semaphore.release();
         }
         return this;
+    }
+
+    // Get the time of sending image
+    public long getSendTime(){
+        return time;
     }
 }

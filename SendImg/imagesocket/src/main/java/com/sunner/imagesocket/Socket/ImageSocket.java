@@ -36,7 +36,18 @@ public class ImageSocket {
 
     public ImageSocket setProtocol(int mode) {
         if (this.mode != Def) {
-            Log.e(TAG, "Mode cannot change unless create a new one");
+            if (this.mode == UDP && mode == UDP) {
+                socket_udp = new ImageSocket_UDP(host, port);
+                return this;
+            } else if (this.mode == TCP && mode == TCP) {
+                try {
+                    socket_tcp = new ImageSocket_TCP(host, port);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return this;
+            } else
+                Log.e(TAG, "Mode cannot change unless create a new one");
             return this;
         } else {
             this.mode = mode;
@@ -59,7 +70,7 @@ public class ImageSocket {
     }
 
     // UDP mode: true to check the socket is open
-    public ImageSocket getSocket(boolean have_to_check_if_port_is_availiable) throws IOException{
+    public ImageSocket getSocket(boolean have_to_check_if_port_is_availiable) throws IOException {
         if (mode == TCP)
             Log.e(TAG, "TCP mode cannot use this function");
         else if (mode == Def)
@@ -74,7 +85,7 @@ public class ImageSocket {
     }
 
     // TCP mode: the number to assign how many time to check
-    public ImageSocket getSocket(int times_to_reconnect_if_connect_fail) throws IOException{
+    public ImageSocket getSocket(int times_to_reconnect_if_connect_fail) throws IOException {
         if (mode == UDP)
             Log.e(TAG, "UDP mode cannot use this function");
         else if (mode == Def)
@@ -97,7 +108,7 @@ public class ImageSocket {
     }
 
     // Set the Opposite port number (UDP)
-    public ImageSocket setOppoPort(int port){
+    public ImageSocket setOppoPort(int port) {
         if (mode == TCP)
             Log.e(TAG, "TCP mode cannot use this function");
         else if (mode == Def)
@@ -143,6 +154,18 @@ public class ImageSocket {
         else if (socket_udp != null)
             socket_udp.send(bitmap);
         return this;
+    }
+
+    // Get the time of sending image
+    public long getSendTime() {
+        if (socket_tcp != null)
+            return socket_tcp.getSendTime();
+        else if (socket_udp != null)
+            return socket_udp.getSendTime();
+        else {
+            Log.e(TAG, "Haven't set protocol");
+            return -1;
+        }
     }
 
 }
