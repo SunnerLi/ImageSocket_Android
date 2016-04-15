@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 public class UDPSend extends AppCompatActivity {
     Button button;
-    String oppositeHost = "192.168.0.100";
+    String oppositeHost = "192.168.1.90";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class UDPSend extends AppCompatActivity {
                                     .setOppoPort(12345);                                            // Set the destination PC port number
 
                             imageSocket.send(getImage());                                           // The input is bitmap only
+                            Log.v("SendImg", "傳輸時間(ms):" + imageSocket.getSendTime());
+
 
                             imageSocket.close();                                                    // Close the socket at final
                         } catch (IOException e) {
