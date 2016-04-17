@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import javax.crypto.spec.DESedeKeySpec;
+
 /**
  * Created by sunner on 2016/4/8.
  */
@@ -15,10 +17,10 @@ public class ImageSocket {
     String TAG = "資訊";
 
     // The Transfer Protocol
-    public final static int Def = -1;
+    public final static int DEF = -1;
     public final static int TCP = 0;
     public final static int UDP = 1;
-    public static int mode = Def;
+    public int mode = DEF;
 
     // Log
     public static boolean enableLog = true;
@@ -34,17 +36,13 @@ public class ImageSocket {
         this.port = port;
     }
 
-    public ImageSocket setProtocol(int mode) {
-        if (this.mode != Def) {
+    public ImageSocket setProtocol(int mode) throws IOException {
+        if (this.mode != DEF) {
             if (this.mode == UDP && mode == UDP) {
                 socket_udp = new ImageSocket_UDP(host, port);
                 return this;
             } else if (this.mode == TCP && mode == TCP) {
-                try {
-                    socket_tcp = new ImageSocket_TCP(host, port);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                socket_tcp = new ImageSocket_TCP(host, port);
                 return this;
             } else
                 Log.e(TAG, "Mode cannot change unless create a new one");
@@ -69,12 +67,23 @@ public class ImageSocket {
         }
     }
 
+    public ImageSocket showProtocol() {
+        if (mode == TCP)
+            Log.v(TAG, "protocol為：TCP");
+        if (mode == UDP)
+            Log.v(TAG, "protocol為：UDP");
+        if (mode == DEF)
+            Log.v(TAG, "protocol為：None");
+
+        return this;
+    }
+
     // UDP mode: true to check the socket is open
     public ImageSocket getSocket(boolean have_to_check_if_port_is_availiable) throws IOException {
         if (mode == TCP)
             Log.e(TAG, "TCP mode cannot use this function");
-        else if (mode == Def)
-            Log.e(TAG, "Haven't set protocol");
+        else if (mode == DEF)
+            PROTO_ERROR("getSocket(boolean)");
         else {
             if (have_to_check_if_port_is_availiable)
                 socket_udp.getSocketWithCheck();
@@ -88,8 +97,8 @@ public class ImageSocket {
     public ImageSocket getSocket(int times_to_reconnect_if_connect_fail) throws IOException {
         if (mode == UDP)
             Log.e(TAG, "UDP mode cannot use this function");
-        else if (mode == Def)
-            Log.e(TAG, "Haven't set protocol");
+        else if (mode == DEF)
+            PROTO_ERROR("getSocket(int)");
         else {
             keepConnect(times_to_reconnect_if_connect_fail);
         }
@@ -103,7 +112,7 @@ public class ImageSocket {
         else if (socket_udp != null)
             Log.e(TAG, "UDP mode cannot use this function");
         else
-            Log.e(TAG, "Haven't set protocol");
+            PROTO_ERROR("keepConnect(int)");
         return this;
     }
 
@@ -111,8 +120,8 @@ public class ImageSocket {
     public ImageSocket setOppoPort(int port) {
         if (mode == TCP)
             Log.e(TAG, "TCP mode cannot use this function");
-        else if (mode == Def)
-            Log.e(TAG, "Haven't set protocol");
+        else if (mode == DEF)
+            PROTO_ERROR("setOppoPort(int)");
         else {
             socket_udp.setOppoPort(port);
         }
@@ -126,7 +135,7 @@ public class ImageSocket {
         else if (socket_udp != null)
             Log.e(TAG, "UDP mode cannot use this function");
         else
-            Log.e(TAG, "Haven't set protocol");
+            PROTO_ERROR("getInputStream()");
         return null;
     }
 
@@ -163,9 +172,16 @@ public class ImageSocket {
         else if (socket_udp != null)
             return socket_udp.getSendTime();
         else {
-            Log.e(TAG, "Haven't set protocol");
+            PROTO_ERROR("getSendTime()");
             return -1;
         }
+    }
+
+    private void PROTO_ERROR(String name){
+        Log.e(TAG, "ImageSocket Error: fail to do the process " + name);
+        Log.e(TAG, "\tmight didn't connect to the PC under tcp mode");
+        Log.e(TAG, "\tmight forget to set the protocol");
+        Log.e(TAG, "\tPlease check the order of the function call");
     }
 
 }

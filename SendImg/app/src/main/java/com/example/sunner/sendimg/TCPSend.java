@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class TCPSend extends AppCompatActivity {
     Button button;
-    String oppositeHost = "192.168.1.90";
+    String oppositeHost = "192.168.0.101";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class TCPSend extends AppCompatActivity {
                     @Override
                     public void run() {
                         super.run();
-
                         ImageSocket imageSocket = new ImageSocket(oppositeHost, 12345);
                         try {
                             imageSocket.setProtocol(ImageSocket.TCP)                                        // Must set protocol first!!!

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class UDPSend extends AppCompatActivity {
     Button button;
-    String oppositeHost = "192.168.1.90";
+    String oppositeHost = "192.168.0.101";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +25,15 @@ public class UDPSend extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        button = (Button)findViewById(R.id.btn);
+        button = (Button) findViewById(R.id.btn);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(){
+                new Thread() {
                     @Override
                     public void run() {
                         super.run();
-
                         ImageSocket imageSocket = new ImageSocket(oppositeHost, 12345);
                         try {
                             imageSocket.setProtocol(ImageSocket.UDP)                                // Must set protocol first!!!

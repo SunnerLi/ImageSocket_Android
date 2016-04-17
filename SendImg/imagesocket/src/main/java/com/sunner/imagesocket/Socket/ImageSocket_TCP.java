@@ -41,7 +41,7 @@ class ImageSocket_TCP extends ImgSocket {
             Log.v(TAG, "第" + i + "次嘗試連線");
             if (!socket.isConnected()) {
                 connect();
-            }else
+            } else
                 break;
         }
         if (!socket.isConnected())
@@ -80,7 +80,7 @@ class ImageSocket_TCP extends ImgSocket {
         }
     }
 
-    public ImageSocket_TCP send(Bitmap bitmap) throws IOException, InterruptedException{
+    public ImageSocket_TCP send(Bitmap bitmap) throws IOException, InterruptedException {
         if (outputStream == null)
             Log.e(TAG, "Haven't get input stream yet.");
         else {
@@ -118,7 +118,7 @@ class ImageSocket_TCP extends ImgSocket {
     }
 
     // Get the time of sending image
-    public long getSendTime(){
+    public long getSendTime() {
         return time;
     }
 }
