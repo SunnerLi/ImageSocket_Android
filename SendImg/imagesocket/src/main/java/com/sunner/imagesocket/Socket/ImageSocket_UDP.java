@@ -2,23 +2,26 @@ package com.sunner.imagesocket.Socket;
 
 
 import android.graphics.Bitmap;
-import android.util.Base64;
 
-import com.sunner.imagesocket.Log.Log;
+import com.sunner.imagesocket.Log.ImageSocketLog;
 import com.sunner.imagesocket.RTP.RTPPacket;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.concurrent.Semaphore;
 
 /**
- * Created by sunner on 2016/4/8.
+ * <p/>
+ * <font color=red>
+ * This class is the detail implementation of udp image socket<br/>
+ * The usual developer don't need to use this class object to send the image directly.<br/>
+ * -->> Please use "ImageSocket" class to do your operation<br/>
+ * </font>
+ * <p/>
  */
 class ImageSocket_UDP extends ImgSocket {
     DatagramSocket datagramSocket[] = new DatagramSocket[5];
@@ -39,26 +42,26 @@ class ImageSocket_UDP extends ImgSocket {
             datagramSocket[i].setReuseAddress(true);
             inetAddress = InetAddress.getByName(oppoHost);
             if (!datagramSocket[i].isClosed())
-                Log.v(TAG, "socket [" + localPort + i + "] 開啟中");
+                ImageSocketLog.v(TAG, "socket [" + localPort + i + "] 開啟中");
             else
-                Log.v(TAG, "socket [" + localPort + i + "] 已關閉");
+                ImageSocketLog.v(TAG, "socket [" + localPort + i + "] 已關閉");
         }
         return this;
     }
 
     public ImageSocket_UDP getSocketWithCheck() throws UnknownHostException, SocketException {
         while (!portsAvaliable(localPort)) {
-            Log.v(TAG, "本地連接阜" + localPort + "被佔用，自動產生新連接阜號碼");
+            ImageSocketLog.v(TAG, "本地連接阜" + localPort + "被佔用，自動產生新連接阜號碼");
             determineNewPort();
         }
-        Log.v(TAG, "本地連接阜號碼為" + localPort);
+        ImageSocketLog.v(TAG, "本地連接阜號碼為" + localPort);
         return getSocketWithoutCheck();
     }
 
     // Set the opposite port number
     public ImageSocket_UDP setOppoPort(int port) {
         if (port < 10000 || port > 60000)
-            Log.e(TAG, "Invalid opposite port number");
+            ImageSocketLog.e(TAG, "Invalid opposite port number");
         else
             oppoPort = port;
         return this;
@@ -90,7 +93,7 @@ class ImageSocket_UDP extends ImgSocket {
 
                 // Send the pachage
                 DatagramPacket packet = new DatagramPacket(_package, _package.length, inetAddress, oppoPort);
-                Log.v(TAG, "封包長度: " + packet.getLength());
+                ImageSocketLog.v(TAG, "封包長度: " + packet.getLength());
                 datagramSocket[imageIndex % 5].send(packet);
             } while (bitmapString.length() > 0);
         } finally {

@@ -2,19 +2,23 @@ package com.sunner.imagesocket.Socket;
 
 import android.graphics.Bitmap;
 
-import com.sunner.imagesocket.Log.Log;
+import com.sunner.imagesocket.Log.ImageSocketLog;
 import com.sunner.imagesocket.RTP.RTPPacket;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.DatagramPacket;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.concurrent.Semaphore;
 
 /**
- * Created by sunner on 2016/4/8.
+ * <p/>
+ * <font color=red>
+ * This class is the detail implementation of tcp image socket<br/>
+ * The usual developer don't need to use this class object to send the image directly.<br/>
+ * -->> Please use "ImageSocket" class to do your operation<br/>
+ * </font>
+ * <p/>
  */
 class ImageSocket_TCP extends ImgSocket {
     Socket socket = null;
@@ -23,31 +27,43 @@ class ImageSocket_TCP extends ImgSocket {
     Semaphore semaphore = new Semaphore(1);
     long time;
 
+    /**
+     * Constructor
+     * @param host: The
+     * @param port
+     * @throws IOException
+     */
     public ImageSocket_TCP(String host, int port) throws IOException {
         localPort = port;
         oppoHost = host;
         while (!portsAvaliable(localPort)) {
-            Log.v(TAG, "本地連接阜" + localPort + "被佔用，自動產生新連接阜號碼");
+            ImageSocketLog.v(TAG, "本地連接阜" + localPort + "被佔用，自動產生新連接阜號碼");
             determineNewPort();
         }
-        Log.v(TAG, "本地連接阜號碼為" + localPort);
+        ImageSocketLog.v(TAG, "本地連接阜號碼為" + localPort);
         socket = new Socket(host, port);
         socketAddress = socket.getRemoteSocketAddress();
     }
 
     // The Image socket can set the time to keep connecting if it fail at first
+
+    /**
+     * @param timeRepeatConnect
+     * @return
+     * @throws IOException
+     */
     public ImageSocket_TCP keepConnect(int timeRepeatConnect) throws IOException {
         for (int i = 0; i < timeRepeatConnect; i++) {
-            Log.v(TAG, "第" + i + "次嘗試連線");
+            ImageSocketLog.v(TAG, "第" + i + "次嘗試連線");
             if (!socket.isConnected()) {
                 connect();
             } else
                 break;
         }
         if (!socket.isConnected())
-            Log.e(TAG, "Keep connecting fail, please check if the opposite is ready.");
+            ImageSocketLog.e(TAG, "Keep connecting fail, please check if the opposite is ready.");
         else
-            Log.v(TAG, "Connect Success!");
+            ImageSocketLog.v(TAG, "Connect Success!");
 
         return null;
     }
@@ -82,7 +98,7 @@ class ImageSocket_TCP extends ImgSocket {
 
     public ImageSocket_TCP send(Bitmap bitmap) throws IOException, InterruptedException {
         if (outputStream == null)
-            Log.e(TAG, "Haven't get input stream yet.");
+            ImageSocketLog.e(TAG, "Haven't get input stream yet.");
         else {
             int imageIndex = 0;
             semaphore.acquire();

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.sunner.imagesocket.RTP.RTPPacket;
 import com.sunner.imagesocket.Socket.ImageSocket;
 
 import java.io.IOException;
@@ -36,18 +37,18 @@ public class TCPSend extends AppCompatActivity {
                         super.run();
                         ImageSocket imageSocket = new ImageSocket(oppositeHost, 12345);
                         try {
-                            imageSocket.setProtocol(ImageSocket.TCP)                                        // Must set protocol first!!!
+                            imageSocket.setProtocol(ImageSocket.TCP)                                // Must set protocol first!!!
 
-                                    .getSocket(10)                                                          // Set the time to re-connect if connect fail (It would call connect function)
+                                    .getSocket(10)                                                  // Set the time to re-connect if connect fail (It would call connect function)
 
-                                    .connect();                                                             // Connect to the PC (can skip if call getSocket first)
+                                    .connect();                                                     // Connect to the PC (can skip if call getSocket first)
 
-                            imageSocket.getInputStream();                                                   // As the usual socket process
-                            imageSocket.send(getImage());                                                   // The input is bitmap only
+                            imageSocket.getInputStream();                                           // As the usual socket process
+                            imageSocket.send(getImage());                                           // The input is bitmap only
 
                             Log.v("SendImg", "傳輸時間(ms):"+imageSocket.getSendTime());
 
-                            imageSocket.close();                                                            // Close the socket at final
+                            imageSocket.close();                                                    // Close the socket at final
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (InterruptedException e) {

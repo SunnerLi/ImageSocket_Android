@@ -2,7 +2,7 @@ package com.sunner.imagesocket.RTP;
 
 import android.util.Base64;
 
-import com.sunner.imagesocket.Log.Log;
+import com.sunner.imagesocket.Log.ImageSocketLog;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -10,7 +10,12 @@ import java.nio.IntBuffer;
 import java.util.Calendar;
 
 /**
- * Created by sunner on 2016/4/8.
+ * <p/>
+ * <font color=red>
+ * This class is used to make the RTP package, including the parameter of RTP header<br/>
+ * If you are not familiar with the RTP protocol, suggest don't modify this class.<br/>
+ * </font>
+ * <p/>
  */
 public class RTPPacket {
     String TAG = "資訊";
@@ -20,24 +25,24 @@ public class RTPPacket {
      *----------------------------------------------------------------------------------------------*/
     //  version 為版號，目前RTP版號為2
     //  1011 0011 = 1 + 2 + 16 + 32 + 128 = 179
-    public static int version = 2;
+    private static int version = 2;
 
     //  padding 為加密演算法，目前不使用
     //  1為使用，0為不使用
-    public static int padding = 1;
+    private static int padding = 1;
 
     // extension 為頭部延長(預設不延長)
     // 1為延長，0為不延長
-    public static int extension = 1;
+    private static int extension = 1;
 
     //  cc 為csrc個數，這裡只有手機(1)
-    public static int cc = 3;
+    private static int cc = 3;
 
     //  pt 為type，jpeg設定為1(?)
-    public static int pt = 1;
+    private static int pt = 1;
 
     //  ssrc為ss個數，本插件目前僅支援單播
-    public static int ssrc = 1;
+    private static int ssrc = 1;
 
     /*----------------------------------------------------------------------------------------------
      *                                      Rest Variable
@@ -154,9 +159,9 @@ public class RTPPacket {
         byte[] headerBytes = intArr2ByteArr(header);
         String headerString = new String(Base64.encode(headerBytes, Base64.DEFAULT));
 
-        Log.v(TAG, "Encode header int長度：" + header.length);
-        Log.v(TAG, "Encode header string長度：" + headerString.length());
-        Log.v(TAG, "Encode payload string長度：" + payload.length());
+        ImageSocketLog.v(TAG, "Encode header int長度：" + header.length);
+        ImageSocketLog.v(TAG, "Encode header string長度：" + headerString.length());
+        ImageSocketLog.v(TAG, "Encode payload string長度：" + payload.length());
 
 
         return (headerString + payload).getBytes();
@@ -169,7 +174,7 @@ public class RTPPacket {
 
 
         int[] header = byteArr2IntArr(Base64.decode(headerString.getBytes(), Base64.DEFAULT));
-        Log.v(TAG, "Decode header string長度：" + Base64.decode(headerString.getBytes(), Base64.DEFAULT).length);
+        ImageSocketLog.v(TAG, "Decode header string長度：" + Base64.decode(headerString.getBytes(), Base64.DEFAULT).length);
         return header;
     }
 

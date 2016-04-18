@@ -3,7 +3,7 @@ package com.sunner.imagesocket.Socket;
 import android.graphics.Bitmap;
 import android.util.Base64;
 
-import com.sunner.imagesocket.Log.Log;
+import com.sunner.imagesocket.Log.ImageSocketLog;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -11,7 +11,13 @@ import java.net.DatagramSocket;
 import java.net.ServerSocket;
 
 /**
- * Created by sunner on 2016/4/9.
+ * <p/>
+ * <font color=red>
+ * This class is the detail implementation of image socket<br/>
+ * The usual developer don't need to use this class object to send the image directly.<br/>
+ * -->> Please use "ImageSocket" class to do your operation<br/>
+ * </font>
+ * <p/>
  */
 public class ImgSocket {
     protected String TAG = "資訊";                                                                  // Log tag
@@ -78,7 +84,7 @@ public class ImgSocket {
     protected String bitMap2String(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        Log.v("資訊", "bitmap[0]:" + (bitmap.getPixel(0, 0)));
+        ImageSocketLog.v("資訊", "bitmap[0]:" + (bitmap.getPixel(0, 0)));
         byte[] b = baos.toByteArray();
         String temp = Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
@@ -87,7 +93,7 @@ public class ImgSocket {
     // Set the max length of payload (Default is 60000)
     public void setImageLengthOri(int length) {
         if (length > 60001 || length < 10)                                                            // length should in range 10-60000
-            Log.e(TAG, "Invalid image length");
+            ImageSocketLog.e(TAG, "Invalid image length");
         else
             imageLength = length;
     }
