@@ -1,6 +1,8 @@
 # ImageSocket_Android
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?maxAge=2592000)]()
-[![Packagist](https://img.shields.io/badge/Develope-0.0.1-brightgreen.svg)]()</br>   
+[![Packagist](https://img.shields.io/badge/Stable-0.0.2-brightgreen.svg)]()</br>   
+![Packagist](https://github.com/SunnerLi/ImageSocket/blob/master/Image/logo.jpeg)</br>   
+
 The Android plugin that can used to send the image rapidly.
 
 Abstract
@@ -40,7 +42,7 @@ Add Gradle dependency:
 ```gradle
 dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.sunner.imagesocket:imagesocket:0.0.1'
+    compile 'com.sunner.imagesocket:imagesocket:0.0.2'
 }
 ```
 Add maven repository:
