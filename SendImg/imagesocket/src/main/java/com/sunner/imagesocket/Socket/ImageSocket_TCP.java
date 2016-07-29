@@ -69,7 +69,7 @@ class ImageSocket_TCP extends ImgSocket {
     }
 
     // The Inputstream cannot send the image directly, skip implementation
-    public ImageSocket_TCP getInputStream() throws IOException {
+    public ImageSocket_TCP getOutputStream() throws IOException {
         outputStream = socket.getOutputStream();
         return this;
     }

@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">SendImg</string>
-    <string name="tcp_btn">TCP 傳送</string>
-    <string name="udp_btn">UDP 傳送</string>
+    <string name="tcp_btn">TCP Transfer</string>
+    <string name="udp_btn">UDP Transfer</string>
+    <string name="bt_btn">BT  Transfer</string>
+
     <string name="title_activity_tcpsend">TCPSend</string>
-    <string name="send">傳送！</string>
+    <string name="send">Transfer！</string>
+    <string name="title_activity_btsend">BTSend</string>
 
 </resources>

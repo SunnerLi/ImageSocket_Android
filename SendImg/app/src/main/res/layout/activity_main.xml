@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
 
@@ -28,6 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="@string/udp_btn"
+            android:textSize="30dp"
+            />
+
+        <Button
+            android:id="@+id/bt_btn"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@string/bt_btn"
             android:textSize="30dp"
             />
     </LinearLayout>

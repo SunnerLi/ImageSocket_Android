@@ -43,7 +43,7 @@ public class TCPSend extends AppCompatActivity {
 
                                     .connect();                                                     // Connect to the PC (can skip if call getSocket first)
 
-                            imageSocket.getInputStream();                                           // As the usual socket process
+                            imageSocket.getOutputStream();                                          // As the usual socket process
                             imageSocket.send(getImage());                                           // The input is bitmap only
 
                             Log.v("SendImg", "傳輸時間(ms):"+imageSocket.getSendTime());

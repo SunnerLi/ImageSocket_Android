@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sunner.sendimg">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <application
         android:allowBackup="true"
@@ -18,7 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".UDPSend" />
-        <activity android:name=".TCPSend"></activity>
+        <activity android:name=".TCPSend" />
+        <activity
+            android:name=".BTSend"
+            android:label="@string/title_activity_btsend"/>
     </application>
 
 </manifest>
