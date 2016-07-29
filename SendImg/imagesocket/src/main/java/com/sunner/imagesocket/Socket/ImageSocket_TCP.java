@@ -3,7 +3,7 @@ package com.sunner.imagesocket.Socket;
 import android.graphics.Bitmap;
 
 import com.sunner.imagesocket.Log.ImageSocketLog;
-import com.sunner.imagesocket.RTP.RTPPacket;
+import com.sunner.imagesocket.Packet.RTPPacket;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,13 +12,13 @@ import java.net.SocketAddress;
 import java.util.concurrent.Semaphore;
 
 /**
- * <p/>
- * <font color=red>
- * This class is the detail implementation of tcp image socket<br/>
- * The usual developer don't need to use this class object to send the image directly.<br/>
- * -->> Please use "ImageSocket" class to do your operation<br/>
- * </font>
- * <p/>
+ * <p>
+ *  <font color=red>
+ *      This class is the detail implementation of tcp image socket<br>
+ *      The usual developer don't need to use this class object to send the image directly.<br>
+ *      -->> Please use "ImageSocket" class to do your operation<br>
+ *  </font>
+ * <p>
  */
 class ImageSocket_TCP extends ImgSocket {
     Socket socket = null;
@@ -45,9 +45,8 @@ class ImageSocket_TCP extends ImgSocket {
         socketAddress = socket.getRemoteSocketAddress();
     }
 
-    // The Image socket can set the time to keep connecting if it fail at first
-
     /**
+     * The Image socket can set the time to keep connecting if it fail at first
      * @param timeRepeatConnect
      * @return
      * @throws IOException
@@ -96,6 +95,7 @@ class ImageSocket_TCP extends ImgSocket {
         }
     }
 
+    // Send image
     public ImageSocket_TCP send(Bitmap bitmap) throws IOException, InterruptedException {
         if (outputStream == null)
             ImageSocketLog.e(TAG, "Haven't get input stream yet.");

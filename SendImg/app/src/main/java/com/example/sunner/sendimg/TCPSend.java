@@ -8,14 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.sunner.imagesocket.RTP.RTPPacket;
 import com.sunner.imagesocket.Socket.ImageSocket;
 
 import java.io.IOException;
 
 public class TCPSend extends AppCompatActivity {
     Button button;
-    String oppositeHost = "192.168.0.101";
+    String oppositeHost = "192.168.1.16";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

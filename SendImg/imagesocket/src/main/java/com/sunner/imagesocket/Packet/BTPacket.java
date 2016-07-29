@@ -1,7 +1,8 @@
-package com.sunner.imagesocket.RTP;
+package com.sunner.imagesocket.Packet;
 
 import android.util.Base64;
-import android.util.Log;
+
+import com.sunner.imagesocket.Log.ImageSocketLog;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -12,7 +13,7 @@ import java.nio.IntBuffer;
  */
 public class BTPacket {
     int payloadMaxLength = 60000;
-    String TAG = "藍牙socket";
+    String TAG = "藍牙封包";
 
     // Set the max length of payload
     public BTPacket setMaxLengthPayload(int length) {
@@ -48,7 +49,7 @@ public class BTPacket {
     public byte[] int2ByteArr(int _int) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(32);
         IntBuffer intBuffer = byteBuffer.asIntBuffer();
-        Log.i(TAG, "length: " + intBuffer.capacity());
+        ImageSocketLog.i(TAG, "length: " + intBuffer.capacity());
         intBuffer.put(_int);
         return byteBuffer.array();
     }
@@ -70,8 +71,8 @@ public class BTPacket {
         byte[] headerBytes = int2ByteArr(header);
         String headerString = new String(Base64.encode(headerBytes, Base64.DEFAULT));
 
-        Log.v(TAG, "Encode header string長度：" + headerString.length());
-        Log.v(TAG, "Encode payload string長度：" + payload.length());
+        ImageSocketLog.v(TAG, "Encode header string長度：" + headerString.length());
+        ImageSocketLog.v(TAG, "Encode payload string長度：" + payload.length());
 
 
         return (headerString + payload).getBytes();
@@ -82,9 +83,8 @@ public class BTPacket {
         String headerString = wholeString.substring(0, 65);
         String payload = wholeString.substring(65);
 
-
         int header = byteArr2Int(Base64.decode(headerString.getBytes(), Base64.DEFAULT));
-        Log.v(TAG, "Decode header string長度：" + Base64.decode(headerString.getBytes(), Base64.DEFAULT).length);
+        ImageSocketLog.v(TAG, "Decode header string長度：" + Base64.decode(headerString.getBytes(), Base64.DEFAULT).length);
         return header;
     }
 }

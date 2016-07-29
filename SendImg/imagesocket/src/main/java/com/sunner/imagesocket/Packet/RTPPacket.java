@@ -1,4 +1,4 @@
-package com.sunner.imagesocket.RTP;
+package com.sunner.imagesocket.Packet;
 
 import android.util.Base64;
 
@@ -10,15 +10,15 @@ import java.nio.IntBuffer;
 import java.util.Calendar;
 
 /**
- * <p/>
- * <font color=red>
- * This class is used to make the RTP package, including the parameter of RTP header<br/>
- * If you are not familiar with the RTP protocol, suggest don't modify this class.<br/>
- * </font>
- * <p/>
+ * <p>
+ *  <font color=red>
+ *      This class is used to make the RTP package, including the parameter of RTP header<br>
+ *      If you are not familiar with the RTP protocol, suggest don't modify this class.<br>
+ *  </font>
+ * <p>
  */
 public class RTPPacket {
-    String TAG = "資訊";
+    String TAG = "RTP封包";
 
     /*----------------------------------------------------------------------------------------------
      *                                      Header Variable

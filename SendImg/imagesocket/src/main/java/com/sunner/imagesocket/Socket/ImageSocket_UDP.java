@@ -4,7 +4,7 @@ package com.sunner.imagesocket.Socket;
 import android.graphics.Bitmap;
 
 import com.sunner.imagesocket.Log.ImageSocketLog;
-import com.sunner.imagesocket.RTP.RTPPacket;
+import com.sunner.imagesocket.Packet.RTPPacket;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -15,13 +15,13 @@ import java.net.UnknownHostException;
 import java.util.concurrent.Semaphore;
 
 /**
- * <p/>
- * <font color=red>
- * This class is the detail implementation of udp image socket<br/>
- * The usual developer don't need to use this class object to send the image directly.<br/>
- * -->> Please use "ImageSocket" class to do your operation<br/>
- * </font>
- * <p/>
+ * <p>
+ *  <font color=red>
+ *      This class is the detail implementation of udp image socket<br>
+ *      The usual developer don't need to use this class object to send the image directly.<br>
+ *      -->> Please use "ImageSocket" class to do your operation<br>
+ *  </font>
+ * <p>
  */
 class ImageSocket_UDP extends ImgSocket {
     DatagramSocket datagramSocket[] = new DatagramSocket[5];

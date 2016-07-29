@@ -3,10 +3,9 @@ package com.sunner.imagesocket.Socket;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothSocket;
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.sunner.imagesocket.Log.ImageSocketLog;
-import com.sunner.imagesocket.RTP.BTPacket;
+import com.sunner.imagesocket.Packet.BTPacket;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,13 +13,13 @@ import java.util.UUID;
 import java.util.concurrent.Semaphore;
 
 /**
- * <p/>
- * <font color=red>
- * This class is the detail implementation of bluetooth image socket<br/>
- * The usual developer don't need to use this class object to send the image directly.<br/>
- * -->> Please use "ImageSocket" class to do your operation<br/>
- * </font>
- * <p/>
+ * <p>
+ *  <font color=red>
+ *      This class is the detail implementation of bluetooth image socket<br>
+ *      The usual developer don't need to use this class object to send the image directly.<br>
+ *      -->> Please use "ImageSocket" class to do your operation<br>
+ *  </font>
+ * <p>
  */
 class ImageSocket__BT extends ImgSocket {
     private BluetoothSocket bluetoothSocket;                                                        // Socket object
@@ -47,7 +46,6 @@ class ImageSocket__BT extends ImgSocket {
     }
 
     // The Image socket can set the time to keep connecting if it fail at first
-
     /**
      * @param timeRepeatConnect:
      * @return

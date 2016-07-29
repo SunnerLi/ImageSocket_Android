@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * <p/>
+ * <p>
  * <font color=green>
- * This class define the operation of image with imageSocket<br/>
- * Please read the wiki in github if you want to know the usage before development.<br/>
+ * This class define the operation of image with imageSocket<br>
+ * Please read the wiki in github if you want to know the usage before development.<br>
  * </font>
- * <p/>
+ * <p>
  */
 public class ImageSocket {
     String TAG = "資訊";
@@ -46,10 +46,10 @@ public class ImageSocket {
      * <font color=green>
      * Constructor
      * </font>
-     * </p>
+     * <p>
      *
-     * @param host >>> The host address
-     * @param port >>> The host port number
+     * @param host: The host address
+     * @param port: The host port number
      */
     public ImageSocket(String host, int port) {
         this.host = host;
@@ -61,10 +61,10 @@ public class ImageSocket {
      * <font color=green>
      * Constructor
      * </font>
-     * </p>
+     * <p>
      *
-     * @param bluetoothAdapter >>> The bluetooth adapter object to get the socket
-     * @param host             >>> The host address
+     * @param bluetoothAdapter: The bluetooth adapter object to get the socket
+     * @param host:             The host address
      */
     public ImageSocket(BluetoothAdapter bluetoothAdapter, String host) {
         this.host = host;
@@ -75,18 +75,18 @@ public class ImageSocket {
 
     /**
      * <p>
-     * <font color=green>
-     * Set the transferring protocol.
-     * </font>
-     * <font color=red>
-     * This function should call it first, or the backward function would tell error!!!
-     * </font>
+     *  <font color=green>
+     *      Set the transferring protocol.
+     *  </font>
+     *  <font color=red>
+     *      This function should call it first, or the backward function would tell error!!!
+     *  </font>
      * </p>
      *
-     * @param mode >>> The mode number.
-     *             There're two mode constant you can choose:<br/>
-     *             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. TCP<br/>
-     *             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. UDP
+     * @param mode: The mode number.<br>
+     *              There're two mode constant you can choose:<br>
+     *              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. TCP<br>
+     *              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. UDP
      * @return ImageSocket object
      * @throws IOException
      */
@@ -128,11 +128,11 @@ public class ImageSocket {
     }
 
     /**
-     * <p/>
-     * <font color=green>
-     * See the protocol after you had setted.
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      See the protocol after you had setted.
+     *  </font>
+     * <p>
      *
      * @return ImageSocket object
      */
@@ -151,14 +151,14 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * UDP mode: true to check the socket is open
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      UDP mode: true to check the socket is open
+     *  </font>
+     * <p>
      *
-     * @param have_to_check_if_port_is_availiable <br/>
-     *                                            >>> If you want to check if the port is availiable
+     * @param have_to_check_if_port_is_availiable <br>
+     *        : If you want to check if the port is availiable
      * @return ImageSocket object
      * @throws IOException
      */
@@ -178,19 +178,19 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * TCP mode: the number to assign how many time to check
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      TCP mode: the number to assign how many time to check
+     *  </font>
+     * <p>
      *
-     * @param times_to_reconnect_if_connect_fail <br/>
-     *                                           >>> The number of time you want to re-connect after the socket connect fail
+     * @param times_to_reconnect_if_connect_fail <br>
+     *        : The number of time you want to re-connect after the socket connect fail
      * @return ImageSocket object
      * @throws IOException
      */
     public ImageSocket getSocket(int times_to_reconnect_if_connect_fail) throws IOException {
-        if (mode == UDP)
+        if (mode == UDP || mode == BT)
             ImageSocketLog.e(TAG, "UDP or BT mode cannot use this function");
         else if (mode == DEF)
             PROTO_ERROR("getSocket(int)");
@@ -202,15 +202,15 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * (Protect Function)
-     * The Image socket can set the time to keep connecting if it fail at first
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      (Protect Function)
+     *      The Image socket can set the time to keep connecting if it fail at first
+     *  </font>
+     * <p>
      *
-     * @param timeRepeatConnect <br/>
-     *                          >>> The number of time you want to re-connect after the socket connect fail
+     * @param timeRepeatConnect <br>
+     *        : The number of time you want to re-connect after the socket connect fail
      * @return ImageSocket object
      * @throws IOException
      */
@@ -228,14 +228,14 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * Set the Opposite port number (UDP)
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      Set the Opposite port number (UDP)
+     *  </font>
+     * <p>
      *
-     * @param port <br/>
-     *             >>> The destination port number
+     * @param port <br>
+     *        : The destination port number
      * @return ImageSocket object
      */
     public ImageSocket setOppoPort(int port) {
@@ -250,11 +250,11 @@ public class ImageSocket {
     }
 
     /**
-     * <p/>
-     * <font color=green>
-     * Inherit the usage of the socket(didn't return the real inputStream)
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      Inherit the usage of the socket(didn't return the real inputStream)
+     *  </font>
+     * <p>
      *
      * @return ImageSocket object
      * @throws IOException
@@ -273,11 +273,11 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * Close the image socket
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      Close the image socket
+     *  </font>
+     * <p>
      *
      * @throws IOException
      */
@@ -292,11 +292,11 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * Connect to the server (TCP or Bluetooth)
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      Connect to the server (TCP or Bluetooth)
+     *  </font>
+     * <p>
      *
      * @return ImageSocket object
      * @throws IOException
@@ -313,14 +313,14 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * Send the Image
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      Send the Image
+     *  </font>
+     * <p>
      *
-     * @param bitmap <br/>
-     *               >>> The bitmap image you want to send
+     * @param bitmap <br>
+     *        : The bitmap image you want to send
      * @return ImageSocket object
      * @throws IOException
      * @throws InterruptedException
@@ -337,11 +337,11 @@ public class ImageSocket {
 
 
     /**
-     * <p/>
-     * <font color=green>
-     * Get the time of sending image
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      Get the time of sending image
+     *  </font>
+     * <p>
      *
      * @return the time to send. (ms)
      */
@@ -366,14 +366,14 @@ public class ImageSocket {
     }
 
     /**
-     * <p/>
-     * <font color=green>
-     * Disable log with specific command.
-     * </font>
-     * <p/>
+     * <p>
+     *  <font color=green>
+     *      Disable log with specific command.
+     *  </font>
+     * <p>
      *
-     * @param command <br/>
-     *                1. forbid_all   : forbid all log, including error<br/>
+     * @param command <br>
+     *                1. forbid_all   : forbid all log, including error<br>
      *                2. forbid_vorbus: forbit only verbose log
      * @return ImageSocket object
      */

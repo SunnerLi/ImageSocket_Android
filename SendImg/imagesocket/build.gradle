@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/SunnerLi/ImageSocket'
     gitUrl = 'https://github.com/SunnerLi/ImageSocket.git'
 
-    libraryVersion = '0.0.1'
+    libraryVersion = '1.0.0'
 
     developerId = 'sunner'
     developerName = 'sunnerli'
@@ -49,5 +49,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
 }
 
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'

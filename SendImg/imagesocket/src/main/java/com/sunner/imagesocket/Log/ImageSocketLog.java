@@ -1,13 +1,13 @@
 package com.sunner.imagesocket.Log;
 
 /**
- * <p/>
- * <font color=red>
- * This class is used for log in ImageSocket log<br/>
- * Suggest use usual android.util.log to debug in your own project.<br/>
- * (Don't use this class to develop)<br/>
- * </font>
- * <p/>
+ * <p>
+ *  <font color=red>
+ *      This class is used for log in ImageSocket log<br>
+ *      Suggest use usual android.util.log to debug in your own project.<br>
+ *      (Don't use this class to develop)<br>
+ *  </font>
+ * <p>
  */
 public class ImageSocketLog {
     // Control Flag

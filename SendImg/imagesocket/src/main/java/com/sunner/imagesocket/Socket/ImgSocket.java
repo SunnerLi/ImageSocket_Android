@@ -11,13 +11,13 @@ import java.net.DatagramSocket;
 import java.net.ServerSocket;
 
 /**
- * <p/>
- * <font color=red>
- * This class is the detail implementation of image socket<br/>
- * The usual developer don't need to use this class object to send the image directly.<br/>
- * -->> Please use "ImageSocket" class to do your operation<br/>
- * </font>
- * <p/>
+ * <p>
+ *  <font color=red>
+ *      This class is the detail implementation of image socket<br>
+ *      The usual developer don't need to use this class object to send the image directly.<br>
+ *      Please use "ImageSocket" class to do your operation<br>
+ *  </font>
+ * </p>
  */
 public class ImgSocket {
     protected String TAG = "資訊";                                                                  // Log tag
@@ -26,7 +26,7 @@ public class ImgSocket {
     protected String oppoHost = "";
     protected int oppoPort = -1;
 
-    protected static int imageLength = 1380;                                                       // the max length of payload
+    protected static int imageLength = 1380;                                                        // the max length of payload
 
 
     // 檢查後5個阜號碼是否閒置
@@ -92,7 +92,7 @@ public class ImgSocket {
 
     // Set the max length of payload (Default is 60000)
     public void setImageLengthOri(int length) {
-        if (length > 60001 || length < 10)                                                            // length should in range 10-60000
+        if (length > 60001 || length < 10)                                                          // length should in range 10-60000
             ImageSocketLog.e(TAG, "Invalid image length");
         else
             imageLength = length;

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class UDPSend extends AppCompatActivity {
     Button button;
-    String oppositeHost = "192.168.0.101";
+    String oppositeHost = "192.168.1.16";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
