@@ -1,17 +1,26 @@
 # ImageSocket_Android
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?maxAge=2592000)]()
-[![Packagist](https://img.shields.io/badge/Stable-0.0.2-brightgreen.svg)]()</br>   
-![Packagist](https://github.com/SunnerLi/ImageSocket/blob/master/Image/logo.jpeg)</br>   
-
-The Android plugin that can used to send the image rapidly.
-
+[![Packagist](https://img.shields.io/badge/Develope-1.0.0-brightgreen.svg)]()</br>   
+    
+The Android / Python plugin that can used to send the image rapidly.
+    
+       
+    
+<p align="center">
+  <img src="https://github.com/SunnerLi/ImageSocket/blob/master/Image/logo.jpeg"/>
+</p> 
+    
+       
+    
 Abstract
 ---------------------
 This project provide a new class `ImageSocket`. As the usual, you can easily transfer the string.
 But It's not easy to transfer the image with a few code. On the Android platform, Google provide 
 TCP & UDP two WiFi method to pass information. This project build a basic API that the developer
 can transfer the image in a easy way!
-
+    
+       
+    
 Example
 ---------------------
 TCP:
@@ -33,7 +42,15 @@ UDP:
       .send(getImage());       
       .close(); 
 ```    
-
+Bluetooth:
+```java
+  ImageSocket imageSocket = new ImageSocket(bluetoothAdapter, oppositeHost);
+  imageSocket.connect();
+  imageSocket.send(getImage());
+```    
+    
+       
+    
 Get Start
 ---------------------
 
@@ -42,7 +59,7 @@ Add Gradle dependency:
 ```gradle
 dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.sunner.imagesocket:imagesocket:0.0.2'
+    compile 'com.sunner.imagesocket:imagesocket:1.0.0'
 }
 ```
 Add maven repository:
@@ -55,25 +72,22 @@ repositories {
 }
 ```
 Notice: This plugin just support appcompat-v7:23.2.1+ edition.  
-    </br>    
-    </br>    
-    </br>    
+    
+       
     
 Usage Detail
 ---------------------
 Check the Wiki to get the more detail.
 - [Wiki](https://github.com/SunnerLi/ImageSocket_Android/wiki/Home)
-    </br>    
-    </br>    
-    </br>    
+    
+       
     
 Developed By
 ---------------------
 
 * SunnerLi - <a6214123@gmail.com>
-    </br>    
-    </br>    
-    </br>    
+    
+       
     
 License
 ---------------------
