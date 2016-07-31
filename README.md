@@ -14,13 +14,17 @@ The Android / Python plugin that can used to send the image rapidly.
     
 Abstract
 ---------------------
-This project provide a new class `ImageSocket`. As the usual, you can easily transfer the string.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This project provide a new class `ImageSocket`. As the usual, you can easily transfer the string.
 But It's not easy to transfer the image with a few code. On the Android platform, Google provide 
-TCP & UDP two WiFi method to pass information. This project build a basic API that the developer
-can transfer the image in a easy way!
+TCP & UDP two WiFi method to pass information. One the other hand, the python platform provide 
+socket pachage to receive the infomation. This project build a basic API that the developer can 
+transfer the image in a easy way!    
     
-       
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This project provide Internet( TCP & UDP ) and bluetooth methodology to reach the goal.    
     
+    
+    
+     
 Example
 ---------------------
 TCP:
