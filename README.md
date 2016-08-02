@@ -1,13 +1,13 @@
 # ImageSocket_Android
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?maxAge=2592000)]()
-[![Packagist](https://img.shields.io/badge/Develope-1.0.0-brightgreen.svg)]()</br>   
+[![Packagist](https://img.shields.io/badge/Stable-1.0.0-brightgreen.svg)]()</br>   
     
 The Android / Python plugin that can used to send the image rapidly.
     
        
     
 <p align="center">
-  <img src="https://github.com/SunnerLi/ImageSocket/blob/master/Image/logo.jpeg"/>
+  <img src="https://github.com/SunnerLi/ImageSocket/blob/master/Image/logo2.png"/>
 </p> 
     
        
